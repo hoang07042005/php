@@ -42,7 +42,7 @@
                         echo "<table class='table table-bordered table-striped'>";
                         echo "<thead>";
                         echo "<tr>";
-                        echo "<th>#</th>";
+                        echo "<th>ID</th>";
                         echo "<th>Name</th>";
                         echo "<th>Email</th>";
                         echo "</tr>";
