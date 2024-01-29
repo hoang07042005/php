@@ -1,10 +1,10 @@
 <?php
 
-global $link;
+global $link, $phone;
 require_once 'config.php';
 
-$name = $email = "";
-$name_err = $email_err = "";
+$name = $phone = "";
+$name_err = $phone_err = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
@@ -17,20 +17,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $name = $input_name;
     }
 
-    $input_email = trim($_POST["email"]);
-    if(empty($input_email)){
-        $address_err = 'Please enter an address.';
+    $input_phone = trim($_POST["phone"]);
+    if(empty($input_phone)){
+        $phone_err = 'Please enter an phone.';
     } else{
-        $email = $input_email;
+        $phone = $input_phone;
     }
 
-    if(empty($name_err) && empty($email_err)) {
-        $sql = "INSERT INTO students (name, email) VALUES (?, ?)";
+    if(empty($name_err) && empty($phone_err)) {
+        $sql = "INSERT INTO contacts_table  (name, phone) VALUES (?, ?)";
         if($stmt = mysqli_prepare($link, $sql)){
-            mysqli_stmt_bind_param($stmt,  "ss", $param_name, $param_email,);
+            mysqli_stmt_bind_param($stmt,  "ss", $param_name, $param_phone,);
 
             $param_name = $name;
-            $param_email = $email;
+            $param_phone = $phone;
 
             if(mysqli_stmt_execute($stmt)){
                 header( "location: index.php");
@@ -73,10 +73,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         <input type="text" name="name" class="form-control" value="<?php echo $name; ?>">
                         <span class="help-block"><?php echo $name_err;?></span>
                     </div>
-                    <div class="form-group <?php echo (!empty($email_err)) ? 'has-error': ''; ?>">
-                        <label>Email</label>
-                        <textarea name="email" class="form-control"><?php echo $email; ?></textarea>
-                        <span class="help-block"><?php echo $email_err;?></span>
+                    <div class="form-group <?php echo (!empty($phone_err)) ? 'has-error': ''; ?>">
+                        <label>Phone</label>
+                        <textarea name="phone" class="form-control"><?php echo $phone; ?></textarea>
+                        <span class="help-block"><?php echo $phone_err;?></span>
+
                     </div>
                     <input type="submit" class="btn btn-primary" value="Submit">
                     <a href="../index.php" class="btn btn-default">Cancel</a>

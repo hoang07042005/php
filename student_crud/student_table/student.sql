@@ -1,11 +1,8 @@
-CREATE TABLE students (
+CREATE TABLE contacts_table  (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(250),
-    email VARCHAR(250)
+    phone VARCHAR(250)
 );
 
-INSERT INTO students (name, email) VALUES
-    ('hoang', 'doviethoang07042005@gmail.com'),
-    ('son', 'theson123@ggmail.com');
 
 

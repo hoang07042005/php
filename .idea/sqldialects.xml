@@ -3,5 +3,7 @@
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/artstore/gallery.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/artstore/includes/gallery-upload.inc.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/student_crud/index.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/thi/baithi.sql" dialect="GenericSQL" />
   </component>
 </project>

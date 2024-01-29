@@ -4,7 +4,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
 
     require_once 'config.php';
 
-    $sql = "SELECT * FROM students WHERE id = ?";
+    $sql = "SELECT * FROM contacts_table  WHERE id = ?";
 
     if($stmt = mysqli_prepare($link, $sql)){
 
@@ -19,7 +19,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
                 $name = $row["name"];
-                $email = $row["email"];
+                $email = $row["phone"];
 
             } else{
                 header("location: error.php");
@@ -67,7 +67,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                 </div>
                 <div class="form-group">
                     <label>Email</label>
-                    <p class="form-control-static"><?php echo $row["email"]; ?></p>
+                    <p class="form-control-static"><?php echo $row["phone"]; ?></p>
                 </div>
                 <p><a href="index.php" class="btn btn-primary">Back</a></p>
             </div>

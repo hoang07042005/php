@@ -36,7 +36,7 @@
                 <?php
                 global$link;
                 require_once 'config.php';
-                $sql = "SELECT * FROM students";
+                $sql = "SELECT * FROM contacts_table ";
                 if($result = mysqli_query($link, $sql)){
                     if(mysqli_num_rows($result) > 0){
                         echo "<table class='table table-bordered table-striped'>";
@@ -44,7 +44,7 @@
                         echo "<tr>";
                         echo "<th>ID</th>";
                         echo "<th>Name</th>";
-                        echo "<th>Email</th>";
+                        echo "<th>Phone</th>";
                         echo "<th>Action</th>";
                         echo "</tr>";
                         echo "</thead>";
@@ -53,7 +53,7 @@
                             echo "<tr>";
                             echo "<td>" . $row['id']."</td>";
                             echo "<td>" . $row['name']."</td>";
-                            echo "<td>" . $row['email']."</td>";
+                            echo "<td>" . $row['phone']."</td>";
                             echo "<td>";
                             echo "<a href='read.php?id=".$row['id']."' title='View Record' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
                             echo "<a href='update.php?id=". $row['id']."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";

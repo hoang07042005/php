@@ -3,8 +3,8 @@
 global $link;
 require_once 'config.php';
 
-$name = $email = "";
-$name_err = $email_err = "";
+$name = $phone = "";
+$name_err = $phone_err = "";
 
 if(!empty($_POST["id"])){
     $id = $_POST["id"];
@@ -18,20 +18,20 @@ if(!empty($_POST["id"])){
         $name = $input_name;
     }
 
-    $input_email = trim(($_POST["email"]));
-    if(empty($input_email)){
-        $email_err = 'Please enter an email.';
+    $input_email = trim(($_POST["phone"]));
+    if(empty($input_phone)){
+        $phone_err = 'Please enter an email.';
     } else{
-        $email = $input_email;
+        $phone = $input_phone;
     }
 
-    if(empty($name_err) && empty($email_err) ) {
-        $sql = "UPDATE students SET name=?, email=? WHERE id=?";
+    if(empty($name_err) && empty($phone_err) ) {
+        $sql = "UPDATE students SET name=?, phone=? WHERE id=?";
         if($stmt = mysqli_prepare($link, $sql)){
-            mysqli_stmt_bind_param($stmt,  "ssi", $param_name, $param_email, $param_id);
+            mysqli_stmt_bind_param($stmt,  "ssi", $param_name, $param_phone, $param_id);
 
             $param_name = $name;
-            $param_email = $email;
+            $param_email = $phone;
             $param_id = $id;
 
             if(mysqli_stmt_execute($stmt)){
@@ -47,7 +47,7 @@ if(!empty($_POST["id"])){
 }else{
     if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
         $id = trim($_GET["id"]);
-        $sql = "SELECT * FROM students WHERE id = ?";
+        $sql = "SELECT * FROM contacts_table WHERE id = ?";
         if($stmt = mysqli_prepare($link, $sql)){
             mysqli_stmt_bind_param($stmt, "i", $param_id);
             $param_id = $id;
@@ -58,7 +58,7 @@ if(!empty($_POST["id"])){
 
                     $row = mysqli_fetch_array($result, mode: MYSQLI_ASSOC);
                     $name = $row["name"];
-                    $email = $row["email"];
+                    $email = $row["phone"];
                 } else{
 
                     header(  "Location: error.php");
@@ -109,12 +109,12 @@ if(!empty($_POST["id"])){
                         <input type="text" name="name" class="form-control" value="<?php echo $name; ?>">
                         <span class="help-block"><?php echo $name_err ?></span>
                     </div>
-                    <div class="form-group <?php echo (!empty($email_err)) ? 'has-error': ''; ?>">
+                    <div class="form-group <?php echo (!empty($phone_err)) ? 'has-error': ''; ?>">
                         <label>Email</label>
                         <label>
-                            <textarea name="email" class="form-control"><?php echo $email; ?></textarea>
+                            <textarea name="phone" class="form-control"><?php echo $phone; ?></textarea>
                         </label>
-                        <span class="help-block"><?php echo $email_err;?></span>
+                        <span class="help-block"><?php echo $phone_err;?></span>
                     </div>
                     <input type="hidden" name="id" value="<?php echo $id;?>"/>
                     <input type="submit" class="btn btn-primary" value="Submit">

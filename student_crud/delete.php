@@ -5,7 +5,7 @@ global $link;
 if(isset($_POST["id"]) && !empty($_POST["id"])){
     require_once 'config.php';
 
-    $sql = "DELETE FROM students WHERE id = ?";
+    $sql = "DELETE FROM contacts_table  WHERE id = ?";
     if($stmt = mysqli_prepare($link, $sql)){
         mysqli_stmt_bind_param($stmt,  "i",  $param_id);
 
