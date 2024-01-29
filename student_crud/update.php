@@ -18,20 +18,20 @@ if(!empty($_POST["id"])){
         $name = $input_name;
     }
 
-    $input_email = trim(($_POST["phone"]));
+    $input_phone = trim(($_POST["phone"]));
     if(empty($input_phone)){
-        $phone_err = 'Please enter an email.';
+        $phone_err = 'Please enter an phone.';
     } else{
         $phone = $input_phone;
     }
 
     if(empty($name_err) && empty($phone_err) ) {
-        $sql = "UPDATE students SET name=?, phone=? WHERE id=?";
+        $sql = "UPDATE contacts_table SET name=?, phone=? WHERE id=?";
         if($stmt = mysqli_prepare($link, $sql)){
             mysqli_stmt_bind_param($stmt,  "ssi", $param_name, $param_phone, $param_id);
 
             $param_name = $name;
-            $param_email = $phone;
+            $param_phone = $phone;
             $param_id = $id;
 
             if(mysqli_stmt_execute($stmt)){
@@ -100,7 +100,7 @@ if(!empty($_POST["id"])){
         <div class="row">
             <div class="col-md-12">
                 <div class="page-header">
-                    <h2>Create Record</h2>
+                    <h2>Update Record</h2>
                 </div>
                 <p>Please edit the input values and submit to update the record.</p>
                 <form action="<?php echo htmlspecialchars(basename($_SERVER ["REQUEST_URI"])); ?>" method="post">
@@ -110,7 +110,7 @@ if(!empty($_POST["id"])){
                         <span class="help-block"><?php echo $name_err ?></span>
                     </div>
                     <div class="form-group <?php echo (!empty($phone_err)) ? 'has-error': ''; ?>">
-                        <label>Email</label>
+                        <label>Phone</label>
                         <label>
                             <textarea name="phone" class="form-control"><?php echo $phone; ?></textarea>
                         </label>
